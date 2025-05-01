@@ -2,7 +2,8 @@
 Application of several security mechanisms in a network composed by multiple computers, routers and other devices.
 
 ## 📁 Resources
-- Open Project Report [HERE](https://docs.google.com/document/d/1xaYT-1VKpHx1aT-xeMEjktiA_5APsadZX9LC8q0m0eA/edit?usp=sharing)
+- Open Notes [HERE](https://docs.google.com/document/d/1E7QlaqlgsbNraZMBSjSRi31UOJsMH-_uyKHDtOrJUx8/edit?usp=sharing)
+- Open Report [HERE](https://docs.google.com/document/d/1xaYT-1VKpHx1aT-xeMEjktiA_5APsadZX9LC8q0m0eA/edit?usp=sharing)
 
 <details>
 <summary>📌 <b>Subject</b> <i>(Click to show)</i></summary>
