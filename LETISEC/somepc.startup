@@ -1,0 +1,5 @@
+ifconfig eth0 15.6.6.6/24 up
+ip route add 10.2.0.0/20 via 15.6.6.1
+ip route add 14.4.3.0/24 via 15.6.6.2
+
+

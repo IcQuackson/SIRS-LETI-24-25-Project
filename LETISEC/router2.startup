@@ -1,0 +1,5 @@
+ifconfig eth0 10.2.2.2/24 up
+ifconfig eth1 10.2.3.254/24 up
+ifconfig eth2 10.2.4.254/24 up
+ifconfig eth3 10.2.5.254/24 up
+ip route add 0.0.0.0/0 via 10.2.2.1
