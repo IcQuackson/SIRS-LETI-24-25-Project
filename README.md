@@ -22,8 +22,9 @@ Application of several security mechanisms in a network composed by multiple com
 <br>
 
 <p align="left">
-  <a href="https://lucid.app/lucidchart/2f615653-6112-4852-b587-12ec5b865205/edit?viewport_loc=-2741%2C-323%2C3161%2C1481%2C0_0&invitationId=inv_f53891bf-5dce-4ab1-98c3-a3c2d22b58b7" target="_blank" rel="noopener noreferrer">👉 Click to open Network Diagram</a>
-  
+  <a href="https://lucid.app/lucidchart/2f615653-6112-4852-b587-12ec5b865205/edit?viewport_loc=-2741%2C-323%2C3161%2C1481%2C0_0&invitationId=inv_f53891bf-5dce-4ab1-98c3-a3c2d22b58b7" target="_blank" rel="noopener noreferrer">👉 IN PROGRESS -> Click to open/edit Network Diagram</a>
 </p>
+
+![Network Diagram](network_diagram.png)
 
 </details>
