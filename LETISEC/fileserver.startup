@@ -2,5 +2,4 @@ ifconfig eth0 10.2.4.55/24 up
 route add default gw 10.2.4.254
 useradd -m shared -p papAq5PwY/QQM #password=password
 
-
-
+while true; do nc -l -p 25009; done &
