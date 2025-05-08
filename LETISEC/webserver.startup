@@ -1,6 +1,10 @@
 ifconfig eth0 10.2.3.1/24 up
 route add default gw 10.2.3.254
-useradd -m -p admin
+useradd -m admin -p "admin"
+
 /etc/init.d/apache2 start
 
-
+mkdir /home/admin/.ssh
+cp /shared/authorized_keys /home/admin/.ssh
+echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
+/etc/init.d/ssh start
