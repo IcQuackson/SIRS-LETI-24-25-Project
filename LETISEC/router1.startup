@@ -25,6 +25,7 @@ cd /etc/openvpn/easy-rsa
 ./easyrsa init-pki
 ./easyrsa build-ca nopass
 ./easyrsa gen-req server nopass
+./easyrsa sign-req server server
 
 cp /etc/openvpn/easy-rsa/pki/issued/server.crt /etc/openvpn/
 cp /etc/openvpn/easy-rsa/pki/private/server.key /etc/openvpn/
@@ -32,3 +33,24 @@ cp /etc/openvpn/easy-rsa/pki/ca.crt /etc/openvpn/
 cp /shared/dh.pem /etc/openvpn/
 
 cp /shared/server.conf /etc/openvpn
+
+cd /etc/openvpn/easy-rsa
+
+for i in {1..10}; do
+	if [ -f /shared/client_oeiras.req ]; then
+		mv /shared/client_oeiras.req pki/reqs/
+		./easyrsa sign-req client client_oeiras
+		mv pki/issued/client_oeiras.crt /shared/
+		cp pki/ca.crt /shared/
+		break
+	fi
+	sleep 1
+done
+
+
+cd /etc/openvpn
+
+mkdir -p /dev/net
+mknod /dev/net/tun c 10 200
+chmod 600 /dev/net/tun
+openvpn server.conf &
