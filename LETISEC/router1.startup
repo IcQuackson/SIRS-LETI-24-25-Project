@@ -3,59 +3,14 @@ ifconfig eth1 6.6.6.1/24 up
 ip route add 10.2.0.0/20 via 10.2.2.2
 ip route add 0.0.0.0/0 via 6.6.6.2
 
-/etc/init.d/openvpn restart
 
-cp -r /usr/share/easy-rsa /etc/openvpn/
-cp /etc/openvpn/easy-rsa/vars.example /etc/openvpn/easy-rsa/vars
-
-# silent mode para o easyrsa
-export EASYRSA_BATCH=1
-
-# Env para gerar a PKI
-cat <<EOF >> /etc/openvpn/easy-rsa/vars
-set_var KEY_COUNTRY "PORTUGAL"
-set_var KEY_CITY "Lisbon"
-set_var KEY_ORG "LETISEC"
-set_var KEY_EMAIL "admin@letisec.com"
-set_var KEY_OU "OpenVPN"
-EOF
-
-# Gerar certificados
-cd /etc/openvpn/easy-rsa
-./easyrsa init-pki
-./easyrsa build-ca nopass
-./easyrsa gen-req server nopass
-./easyrsa sign-req server server
-
-cp /etc/openvpn/easy-rsa/pki/issued/server.crt /etc/openvpn/
-cp /etc/openvpn/easy-rsa/pki/private/server.key /etc/openvpn/
-cp /etc/openvpn/easy-rsa/pki/ca.crt /etc/openvpn/
-cp /shared/dh.pem /etc/openvpn/
-
-cp /shared/server.conf /etc/openvpn
-
-cd /etc/openvpn/easy-rsa
-
-for i in {1..10}; do
-	if [ -f /shared/client_oeiras.req ]; then
-		mv /shared/client_oeiras.req pki/reqs/
-		./easyrsa sign-req client client_oeiras
-		mv pki/issued/client_oeiras.crt /shared/
-		cp pki/ca.crt /shared/
-		break
-	fi
-	sleep 1
-done
-
-
-cd /etc/openvpn
-
-mkdir ccd
-echo "iroute 14.4.3.0 255.255.255.0" > ./ccd/client_oeiras
+rm -rf /etc/openvpn
+mv openvpn_server /etc/openvpn/
 
 mkdir -p /dev/net
 mknod /dev/net/tun c 10 200
 chmod 600 /dev/net/tun
+/etc/init.d/openvpn restart
 openvpn server.conf &
 
 #iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
