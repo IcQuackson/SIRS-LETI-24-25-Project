@@ -50,11 +50,19 @@ done
 
 cd /etc/openvpn
 
+mkdir ccd
+echo "iroute 14.4.3.0 255.255.255.0" > ./ccd/client_oeiras
+
 mkdir -p /dev/net
 mknod /dev/net/tun c 10 200
 chmod 600 /dev/net/tun
 openvpn server.conf &
 
-iptables -A FORWARD -p icmp -j ACCEPT
-iptables -A FORWARD -p udp --dport 33434:33534 -j ACCEPT
-iptables -A FORWARD -j DROP
+#iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+#iptables -A FORWARD -p tcp -d 10.2.3.1 --dport 80 -m state --state NEW -j ACCEPT
+#iptables -A FORWARD -p tcp -d 10.2.3.1 --dport 22 -m state --state NEW -j ACCEPT
+#iptables -A FORWARD -p tcp -d 10.2.3.2 --dport 465 -m state --state NEW -j ACCEPT
+#iptables -A FORWARD -p udp --dport 1194 -m state --state NEW -j ACCEPT
+#iptables -A FORWARD -p udp --dport 33434:33534 -m state --state NEW -j ACCEPT
+#iptables -A FORWARD -p icmp -j ACCEPT
+#iptables -A FORWARD -j DROP

@@ -1,0 +1,11 @@
+OpenVPN CLIENT LIST
+Updated,Wed May 14 18:11:33 2025
+Common Name,Real Address,Bytes Received,Bytes Sent,Connected Since
+client_oeiras,6.6.6.2:38156,3714,3819,Wed May 14 18:08:32 2025
+ROUTING TABLE
+Virtual Address,Common Name,Real Address,Last Ref
+14.4.3.0/24,client_oeiras,6.6.6.2:38156,Wed May 14 18:08:32 2025
+192.168.0.2,client_oeiras,6.6.6.2:38156,Wed May 14 18:08:32 2025
+GLOBAL STATS
+Max bcast/mcast queue length,0
+END
