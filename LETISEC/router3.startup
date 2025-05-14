@@ -12,8 +12,8 @@ chmod 600 /dev/net/tun
 /etc/init.d/openvpn restart
 openvpn client.conf &
 
-#iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
-#iptables -A FORWARD -p udp --dport 1194 -m state --state NEW -j ACCEPT
-#iptables -A FORWARD -p udp --dport 33434:33534 -m state --state NEW -j ACCEPT
-#iptables -A FORWARD -p icmp -j ACCEPT
-#iptables -A FORWARD -j DROP
+iptables -A FORWARD -m state --state ESTABLISHED -j ACCEPT
+iptables -A FORWARD -p udp --dport 1194 -m state --state NEW -j ACCEPT
+iptables -A FORWARD -p udp --dport 33434:33534 -m state --state NEW -j ACCEPT
+iptables -A FORWARD -p icmp -j ACCEPT
+iptables -A FORWARD -j DROP
