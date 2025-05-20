@@ -1,2 +1,1 @@
-alert icmp any any -> any any (msg:"ICMP test alert"; sid:1000000; rev:1;)
 alert tcp any any -> 10.2.3.1 20 (msg:"FTP access try detected"; flags:S; sid:1)
