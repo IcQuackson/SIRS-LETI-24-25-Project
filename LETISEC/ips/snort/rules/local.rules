@@ -1,0 +1,1 @@
+drop icmp any any -> 10.2.5.1 any (msg:"ICMP flooding detected"; itype:8; icode:0; detection_filter:track by_src, count 20, seconds 60; sid:1;)

@@ -3,7 +3,6 @@ ifconfig eth1 6.6.6.1/24 up
 ip route add 10.2.0.0/20 via 10.2.2.2
 ip route add 0.0.0.0/0 via 6.6.6.2
 
-
 rm -rf /etc/openvpn
 mv openvpn_server /etc/openvpn/
 
