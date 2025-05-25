@@ -8,6 +8,8 @@ brctl addif br0 eth1
 ifconfig br0 up
 
 iptables -A FORWARD -m state --state ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i br0 -m iprange --src-range 10.2.0.0-10.2.2.0 -j DROP
+iptables -A FORWARD -i br0 -m iprange --src-range 10.2.2.2-10.2.15.255 -j DROP
 iptables -A FORWARD -p tcp -d 10.2.3.1 --dport 80 -m state --state NEW -j ACCEPT
 iptables -A FORWARD -p tcp -d 10.2.3.1 --dport 22 -m state --state NEW -j ACCEPT
 iptables -A FORWARD -p tcp -d 10.2.3.2 --dport 465 -m state --state NEW -j ACCEPT

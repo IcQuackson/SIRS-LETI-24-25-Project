@@ -9,4 +9,3 @@ rm -rf /etc/snort
 mv /snort /etc/snort
 cd ~
 chmod 777 snort.sh
-#./snort.sh
