@@ -14,6 +14,11 @@ iptables -A FORWARD ! -s 10.2.0.0/20 ! -d 10.2.0.0/20 -j DROP
 iptables -A FORWARD -p udp --dport 33434:33534 -j ACCEPT
 iptables -A FORWARD -p icmp -j ACCEPT
 
+# ssh de dentro para fora
+iptables -A FORWARD -p tcp -s 10.2.0.0/20 --dport 22 -j ACCEPT
+iptables -A FORWARD -p tcp -d 10.2.0.0/20 --sport 22 -j ACCEPT
+
+# http para webserv
 iptables -A FORWARD -p tcp -d 10.2.3.1 --dport 80 -j ACCEPT
 iptables -A FORWARD -p tcp -s 10.2.3.1 --sport 80 -j ACCEPT
 
@@ -21,22 +26,28 @@ iptables -A FORWARD -p tcp -s 10.2.3.1 --sport 80 -j ACCEPT
 iptables -A FORWARD -p tcp -d 10.2.3.1 --dport 22 -j ACCEPT
 iptables -A FORWARD -p tcp -s 10.2.3.1 --sport 22 -j ACCEPT
 
-# ssh de dentro para fora
-iptables -A FORWARD -p tcp -s 10.2.0.0/20 --dport 22 -j ACCEPT
-iptables -A FORWARD -p tcp -d 10.2.0.0/20 --sport 22 -j ACCEPT
+# mail a ir para webserver
+iptables -A FORWARD -p tcp -d 10.2.3.1 --dport 465 -j ACCEPT
+iptables -A FORWARD -p tcp -s 10.2.3.1 --sport 465 -j ACCEPT
 
-# mail a vir
+# mail a ir para mailserver
 iptables -A FORWARD -p tcp -d 10.2.3.2 --dport 465 -j ACCEPT
 iptables -A FORWARD -p tcp -s 10.2.3.2 --sport 465 -j ACCEPT
 
-# mail a sair
+# mail a sair do mailserver
 iptables -A FORWARD -p tcp -s 10.2.3.2 --dport 465 -j ACCEPT
 iptables -A FORWARD -p tcp -d 10.2.3.2 --sport 465 -j ACCEPT
 
-iptables -A FORWARD -p tcp -s 14.4.3.0/24 -d 10.2.4.55 -j ACCEPT
-iptables -A FORWARD -p tcp -d 14.4.3.0/24 -s 10.2.4.55 -j ACCEPT
+# http para mailserver
+iptables -A FORWARD -p tcp -d 10.2.3.2 --dport 80 -j ACCEPT
+iptables -A FORWARD -p tcp -s 10.2.3.2 --sport 80 -j ACCEPT
 
+# acesso emails no mailserver - NY
 iptables -A FORWARD -p tcp -s 14.4.3.0/24 -d 10.2.3.2 --dport 993 -j ACCEPT
 iptables -A FORWARD -p tcp -d 14.4.3.0/24 -s 10.2.3.2 --sport 993 -j ACCEPT
+
+# acesso ao fileserver - NY
+iptables -A FORWARD -p tcp -s 14.4.3.0/24 -d 10.2.4.55 -j ACCEPT
+iptables -A FORWARD -p tcp -d 14.4.3.0/24 -s 10.2.4.55 -j ACCEPT
 
 iptables -A FORWARD -j DROP
