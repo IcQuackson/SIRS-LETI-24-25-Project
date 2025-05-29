@@ -17,3 +17,12 @@ check_ports_should_be_open() {
             || echo "❌ Port $port should be open."
     done
 }
+
+expect_ping()      { kexec "$1" ping -c2 -w3 "$2" &>/dev/null && echo "✅ ping $1 -> $2" || { echo "❌ ping should work"; return 1; }; }
+expect_no_ping()   { kexec "$1" ping -c2 -w3 "$2" &>/dev/null && { echo "❌ ping should fail"; return 1; } || echo "✅ ping blocked as expected"; }
+
+
+
+
+
+

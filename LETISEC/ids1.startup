@@ -2,7 +2,7 @@ ifconfig eth0 10.2.3.3/24 up
 route add default gw 10.2.3.254
 
 rm -rf /etc/snort
-cp -r /shared/snort /etc/snort
+mv /snort /etc/snort
 
 snort -c /etc/snort/snort.conf -i eth0 -D
 #tail -f /var/log/snort/alert

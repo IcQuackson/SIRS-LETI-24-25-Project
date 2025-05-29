@@ -4,3 +4,8 @@ brctl addbr br0
 brctl addif br0 eth0
 brctl addif br0 eth1
 ifconfig br0 up
+
+rm -rf /etc/snort
+mv /snort /etc/snort
+cd ~
+chmod 777 snort.sh
